@@ -5,3 +5,4 @@ Feel free to comment on how I could have solved the puzzles more efficiently (ie
 Current Contents:
 Tutorial: Onboarding
 Easy: Power of Thor
+Easy: The Descent
