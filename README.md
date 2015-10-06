@@ -3,6 +3,6 @@ This Repo contains my solutions to the Python programming puzzles at [CodinGame]
 Feel free to comment on how I could have solved the puzzles more efficiently (ie with less code) for the easier problems. 
 
 Current Contents:
-Tutorial: Onboarding
-Easy: Power of Thor
-Easy: The Descent
+* Tutorial: Onboarding
+* Easy: Power of Thor
+* Easy: The Descent
