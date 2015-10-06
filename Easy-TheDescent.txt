@@ -1,29 +1,27 @@
-#Solution for Easy The Descent
-
 import sys
 import math
 
 # Auto-generated code below aims at helping you parse
 # the standard input according to the problem statement.
 
-mountain_h=[0 for i in range(8)]
 # game loop
 while 1:
+    tallest_mountain = 0
     space_x, space_y = [int(i) for i in raw_input().split()]
-    for i in xrange(8):
-        mountain_h[i] = int(raw_input()) # represents the height of one mountain, from 9 to 0. Mountain heights are provided from left to right.
+    print >> sys.stderr, "------------------"
+    print >> sys.stderr, "Current location: %d" % space_x
 
-    # Write an action using print
-    # To debug: print >> sys.stderr, "Debug messages..."
+    for i in xrange(8):
+        mountain_h = int(raw_input()) # represents the height of one mountain, from 9 to 0. Mountain heights are provided from left to right.
+        print >> sys.stderr, "Mountain #%d: Height %d" % (i, mountain_h)
+        if space_x == i:
+            this_mountain = mountain_h
+        tallest_mountain = max(mountain_h, tallest_mountain)
+    print >> sys.stderr, "tallest mountain: %d" % tallest_mountain
+    print >> sys.stderr, "this mountain: %d" % this_mountain
     
-    target = mountain_h.index(max(mountain_h))
-    if target == space_x:
-        command = 'FIRE'
+    if this_mountain == tallest_mountain:
+        print "FIRE"
     else:
-        command = 'HOLD'
-    
-    
-    
-    # either:  FIRE (ship is firing its phase cannons) or HOLD (ship is not firing).
-    print command
+        print "HOLD"
 
