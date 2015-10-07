@@ -1,0 +1,71 @@
+#Solution for Medium Skynet: The Virus
+
+import sys
+import math
+
+# Auto-generated code below aims at helping you parse
+# the standard input according to the problem statement.
+
+ # n: the total number of nodes in the level, including the gateways
+ # l: the number of links
+ # e: the number of exit gateways
+
+'''
+#Prints out all the raw inputs
+print >> sys.stderr, "------------------"
+i = 1;
+while 1:
+    print >> sys.stderr, "Raw Input #{}: {}".format(i,raw_input().split())
+    i+=1
+'''
+
+
+n, l, e = [int(i) for i in raw_input().split()]
+n1 = [0 for i in range(l)]
+n2 = list(n1)
+ei = [0 for i in range(e)]
+
+
+for i in xrange(l):
+     # n1: N1 and N2 defines a link between these nodes
+    n1[i], n2[i] = [int(j) for j in raw_input().split()]
+
+#Combining the two lists into one master link list for easier searching of all links
+n1Master = list(n1)
+n1Master.extend(n2)
+n2Master = list(n2)
+n2Master.extend(n1)
+  
+print >> sys.stderr, "Links: {}\n       {}".format(n1,n2)
+
+for i in xrange(e):
+    ei[i] = int(raw_input()) # the index of a gateway node
+
+# game loop
+while 1:
+    si = int(raw_input()) # The index of the node on which the Skynet agent is positioned this turn
+    
+    # Write an action using print
+    # To debug: print >> sys.stderr, "Debug messages..."
+    command = []
+    command.extend([str(si),' '])
+    
+    #Check to see if the agent is linked to an exit, if so, sever the connection, else pick a link at random
+    agentLinks = [i for i, x in enumerate(n1Master) if x == si] #Finds all N1 link indexs the agent can go to
+    agentLinks = [n2Master[j] for j in agentLinks] #All the locations the agent can move to next
+    
+    print>>sys.stderr, agentLinks
+    
+    for x in xrange(len(ei)):
+        closestExit = [i for i, j in enumerate(agentLinks) if j == ei[x]]
+        if len(closestExit)>0:
+            command.extend(str(ei[x]))
+            break
+        
+    if len(command) < 3:
+        command.extend(str(agentLinks[0])) #Not the most efficent strategy but given the test cases the least complex
+    
+    
+    # Example: 0 1 are the indices of the nodes you wish to sever the link between
+    print ''.join(command)
+    
